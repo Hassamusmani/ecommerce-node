@@ -1,0 +1,26 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "An e-commerce platform",
+  "keywords": [
+    "shopping"
+  ],
+  "homepage": "https://github.com/Hassamusmani/ecommerce-node#readme",
+  "bugs": {
+    "url": "https://github.com/Hassamusmani/ecommerce-node/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hassamusmani/ecommerce-node.git"
+  },
+  "license": "ISC",
+  "author": "Hassam Usmani",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
