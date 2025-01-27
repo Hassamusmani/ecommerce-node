@@ -20,9 +20,38 @@ exports.addProduct = (req, res, next) => {
     .send({ id: product.id, message: "product Added successfully" });
 };
 
-exports.updateProduct = (req, res, next) => {};
+exports.updateProduct = (req, res, next) => {
+  const { id, keyValuePairs } = req.body;
 
-exports.deleteProduct = (req, res, next) => {};
+  if (!id || !keyValuePairs || Object.keys(keyValuePairs).length === 0) {
+    return res.status(400).send({ message: "Bad Request!" });
+  }
+
+  const product = Product.getById(id);
+  if (!product) {
+    return res.status(400).send({ message: "no product updated" });
+  }
+
+  for (const key in keyValuePairs) {
+    product[key] = keyValuePairs[key];
+  }
+
+  Product.updateProduct(product);
+
+  res.status(201).send({ message: "product updated successfully" });
+};
+
+exports.deleteProduct = (req, res, next) => {
+  const { prodId } = req.params;
+
+  if (!Product.getProductAvailability(prodId)) {
+    return res.status(400).send({ message: "Bad Request!" });
+  }
+
+  Product.deleteProduct(prodId);
+
+  res.status(201).send({ message: "product deleted successfully" });
+};
 
 exports.getAnalytics = (req, res, next) => {
   const analytics = Product.getAnalytics();

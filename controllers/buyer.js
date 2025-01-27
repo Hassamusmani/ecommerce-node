@@ -5,9 +5,28 @@ exports.getProducts = (req, res, next) => {
   res.status(200).send(products);
 };
 
-exports.getProductById = (req, res, next) => {};
+exports.getProductById = (req, res, next) => {
+  const { prodId } = req.params;
+  const product = Product.getById(prodId);
 
-exports.getProductByQuery = (req, res, next) => {};
+  if (!product) {
+    return res.status(400).send({ message: "product not found" });
+  }
+
+  res.status(200).send(product);
+};
+
+exports.getProductsByQuery = (req, res, next) => {
+  const { search } = req.query;
+
+  const queriedProducts = Product.getByQuery(search.toLowerCase());
+
+  if (!queriedProducts) {
+    return res.status(400).send({ message: "product not found" });
+  }
+
+  res.status(200).send(queriedProducts);
+};
 
 exports.addToCart = (req, res, next) => {
   const { id, quantity } = req.body;

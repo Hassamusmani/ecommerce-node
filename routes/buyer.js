@@ -3,7 +3,7 @@ const express = require("express");
 const {
   getProducts,
   getProductById,
-  getProductByQuery,
+  getProductsByQuery,
   addToCart,
   checkout,
   buyProducts,
@@ -13,13 +13,13 @@ const router = express.Router();
 
 router.get("/get-products", getProducts);
 
-router.get("/get-by-id", getProductById);
+router.get("/get-products/:prodId", getProductById);
 
-router.get("/search-products", getProductByQuery);
+router.get("/search-products", getProductsByQuery);
 
 router.post("/add-to-cart", addToCart);
 
-router.get("/checkout", checkout);
+router.post("/checkout", checkout);
 
 router.post("/buy", buyProducts);
 

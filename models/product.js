@@ -36,11 +36,13 @@ module.exports = class Product {
   }
 
   static getById(id) {
-    return Product.products.filter((prod) => prod.id === id);
+    return Product.products.find((prod) => prod.id === id);
   }
 
   static getByQuery(query) {
-    return Product.products.filter((prod) => prod.name.includes(query));
+    return Product.products.filter((prod) =>
+      prod.name.toLowerCase().includes(query)
+    );
   }
 
   static getProductAvailability(prodId) {
